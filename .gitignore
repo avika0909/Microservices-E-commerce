@@ -1,0 +1,12 @@
+# Maven build output - no need to push these
+*/target/
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
