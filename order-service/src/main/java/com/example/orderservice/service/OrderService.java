@@ -39,7 +39,9 @@ public class OrderService {
         }
 
         Order order = new Order(userId, productId);
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        productClient.reduceStock(productId);
+        return saved;
     }
 
     public List<Order> getAllOrders() {

@@ -13,6 +13,11 @@ spring:
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
+        - id: auth-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/**
+
         - id: user-service
           uri: lb://user-service
           predicates:
