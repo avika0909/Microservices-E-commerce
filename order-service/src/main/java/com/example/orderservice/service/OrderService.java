@@ -17,26 +17,18 @@ public class OrderService {
     private final UserClient userClient;
     private final ProductClient productClient;
 
-    public OrderService(OrderRepository orderRepository,
-                        UserClient userClient,
-                        ProductClient productClient) {
+    public OrderService(OrderRepository orderRepository, UserClient userClient, ProductClient productClient) {
         this.orderRepository = orderRepository;
         this.userClient = userClient;
         this.productClient = productClient;
     }
 
     public Order placeOrder(Long userId, Long productId) {
-        // Feign calls user-service via Eureka — no hardcoded URL
         UserResponse user = userClient.getUserById(userId);
-        if (user == null) {
-            throw new RuntimeException("User not found with id: " + userId);
-        }
+        if (user == null) throw new RuntimeException("User not found with id: " + userId);
 
-        // Feign calls product-service via Eureka — no hardcoded URL
         ProductResponse product = productClient.getProductById(productId);
-        if (product == null) {
-            throw new RuntimeException("Product not found with id: " + productId);
-        }
+        if (product == null) throw new RuntimeException("Product not found with id: " + productId);
 
         Order order = new Order(userId, productId);
         Order saved = orderRepository.save(order);
@@ -46,5 +38,16 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
+    }
+
+    public List<Order> getOrdersByUser(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
+
+    public Order updateStatus(Long orderId, String status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
+        order.setStatus(Order.Status.valueOf(status.toUpperCase()));
+        return orderRepository.save(order);
     }
 }
