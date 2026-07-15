@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  # 1. START FIRST - Service Registry
+  eureka-server:
+    build: ./eureka-server          # look for Dockerfile inside this folder
+    container_name: eureka-server
+    ports:
+      - "8761:8761"                 # expose eureka dashboard on localhost:8761
+
+  # 2. START AFTER EUREKA
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8070:8070"                 # expose gateway on localhost:8070
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server               # wait for eureka to start first
+
+  # 3. MICROSERVICES - all register to eureka
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    ports:
+      - "8083:8083"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server

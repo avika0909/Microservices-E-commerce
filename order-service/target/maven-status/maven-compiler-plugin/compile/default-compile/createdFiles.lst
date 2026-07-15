@@ -1,0 +1,10 @@
+com\example\orderservice\dto\OrderRequest.class
+com\example\orderservice\dto\ProductResponse.class
+com\example\orderservice\OrderServiceApplication.class
+com\example\orderservice\client\ProductClient.class
+com\example\orderservice\repository\OrderRepository.class
+com\example\orderservice\controller\OrderController.class
+com\example\orderservice\dto\UserResponse.class
+com\example\orderservice\client\UserClient.class
+com\example\orderservice\service\OrderService.class
+com\example\orderservice\entity\Order.class
