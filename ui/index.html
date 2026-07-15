@@ -12,14 +12,11 @@
 
 <div id="toastBox"></div>
 
-<!-- ════════════════════════════════════════════
-     LOGIN / ROLE SELECTION SCREEN
-════════════════════════════════════════════ -->
+<!-- LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">ShopEase</div>
     <div class="login-sub">Welcome! Choose how you'd like to continue.</div>
-
     <div class="role-cards">
       <div class="role-card" id="rc-customer" onclick="selectRole('customer')">
         <div class="rc-icon">🛍️</div>
@@ -32,80 +29,41 @@
         <div class="rc-desc">Manage store &amp; products</div>
       </div>
     </div>
-
     <div class="login-divider" id="authDividerText">sign in to your account</div>
-
-    <!-- Tab switcher (customer only) -->
     <div class="auth-tabs" id="authTabs" style="display:none">
       <button class="auth-tab active" id="tab-signin"   onclick="switchAuthTab('signin')">Sign In</button>
       <button class="auth-tab"        id="tab-register" onclick="switchAuthTab('register')">Create Account</button>
     </div>
-
-    <!-- SIGN IN panel -->
     <div class="auth-panel active" id="panel-signin">
-      <div class="fg">
-        <div class="fl">Email</div>
-        <input class="lf-input" id="loginEmail" type="email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')doLogin()"/>
-      </div>
-      <div class="fg">
-        <div class="fl">Password</div>
-        <input class="lf-input" id="loginPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
-      </div>
-      <div class="login-err" id="loginErr">Invalid credentials. Please try again.</div>
-      <button class="btn-login" id="btnSignIn" onclick="doLogin()">
-        Sign In <i class="fa-solid fa-arrow-right" style="font-size:.8rem;margin-left:4px"></i>
-      </button>
-      <div style="text-align:center;font-size:.78rem;color:var(--txt3)">
-        No account? <span class="switch-link" onclick="switchAuthTab('register')">Create one free</span>
-      </div>
+      <div class="fg"><div class="fl">Email</div><input class="lf-input" id="loginEmail" type="email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="fg"><div class="fl">Password</div><input class="lf-input" id="loginPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="login-err" id="loginErr">Invalid credentials.</div>
+      <button class="btn-login" id="btnSignIn" onclick="doLogin()">Sign In <i class="fa-solid fa-arrow-right" style="font-size:.8rem;margin-left:4px"></i></button>
+      <div style="text-align:center;font-size:.78rem;color:var(--txt3)">No account? <span class="switch-link" onclick="switchAuthTab('register')">Create one free</span></div>
     </div>
-
-    <!-- REGISTER panel -->
     <div class="auth-panel" id="panel-register">
-      <div class="fg">
-        <div class="fl">Full Name</div>
-        <input class="lf-input" id="regName" type="text" placeholder="e.g. Jane Doe" onkeydown="if(event.key==='Enter')doRegister()"/>
-      </div>
-      <div class="fg">
-        <div class="fl">Email Address</div>
-        <input class="lf-input" id="regEmail" type="email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')doRegister()"/>
-      </div>
-      <div class="fg">
-        <div class="fl">Password</div>
-        <input class="lf-input" id="regPass" type="password" placeholder="Create a password (min 6 chars)" onkeydown="if(event.key==='Enter')doRegister()"/>
-      </div>
-      <div class="fg">
-        <div class="fl">Confirm Password</div>
-        <input class="lf-input" id="regPass2" type="password" placeholder="Repeat password" onkeydown="if(event.key==='Enter')doRegister()"/>
-      </div>
+      <div class="fg"><div class="fl">Full Name</div><input class="lf-input" id="regName" type="text" placeholder="e.g. Jane Doe" onkeydown="if(event.key==='Enter')doRegister()"/></div>
+      <div class="fg"><div class="fl">Email Address</div><input class="lf-input" id="regEmail" type="email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')doRegister()"/></div>
+      <div class="fg"><div class="fl">Password</div><input class="lf-input" id="regPass" type="password" placeholder="Min 6 characters" onkeydown="if(event.key==='Enter')doRegister()"/></div>
+      <div class="fg"><div class="fl">Confirm Password</div><input class="lf-input" id="regPass2" type="password" placeholder="Repeat password" onkeydown="if(event.key==='Enter')doRegister()"/></div>
       <div class="login-err" id="regErr"></div>
       <div class="login-ok"  id="regOk"></div>
-      <button class="btn-register" id="btnRegister" onclick="doRegister()">
-        <i class="fa-solid fa-user-plus"></i> Create Account
-      </button>
-      <div style="text-align:center;font-size:.78rem;color:var(--txt3)">
-        Already have an account? <span class="switch-link" onclick="switchAuthTab('signin')">Sign in</span>
-      </div>
+      <button class="btn-register" id="btnRegister" onclick="doRegister()"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+      <div style="text-align:center;font-size:.78rem;color:var(--txt3)">Already have an account? <span class="switch-link" onclick="switchAuthTab('signin')">Sign in</span></div>
     </div>
-
-    <div class="login-hint" id="ownerHint" style="display:none">
-      <strong>Owner credentials</strong><br/>
-      Use your admin account email &amp; password.
-    </div>
+    <div class="login-hint" id="ownerHint" style="display:none"><strong>Owner credentials</strong><br/>Use your admin account email &amp; password.</div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════
-     CUSTOMER SHELL
-════════════════════════════════════════════ -->
+<!-- CUSTOMER SHELL -->
 <div id="customerShell" style="display:none">
-
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-brand" onclick="custNav('shop')">ShopEase</div>
     <div class="navbar-center">
-      <button class="nav-link active" id="cnav-shop"   onclick="custNav('shop')">Shop</button>
-      <button class="nav-link"        id="cnav-orders" onclick="custNav('orders')">My Orders</button>
+      <button class="nav-link active" id="cnav-shop"     onclick="custNav('shop')">Shop</button>
+      <button class="nav-link"        id="cnav-wishlist" onclick="custNav('wishlist')"><i class="fa-solid fa-heart" style="color:var(--danger)"></i> Wishlist <span id="wishlistBadge" class="nav-badge" style="display:none"></span></button>
+      <button class="nav-link"        id="cnav-orders"   onclick="custNav('orders')">My Orders</button>
+      <button class="nav-link"        id="cnav-profile"  onclick="custNav('profile')"><i class="fa-solid fa-user"></i> Profile</button>
     </div>
     <div class="navbar-right">
       <button class="cart-btn" onclick="toggleCart()">
@@ -120,7 +78,6 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <div id="heroSection">
     <div class="hero">
       <h1>Everything you need,<br/>delivered fast.</h1>
@@ -132,33 +89,47 @@
   </div>
 
   <div class="cust-content">
-    <!-- Shop Page -->
+    <!-- SHOP -->
     <div class="cust-page active" id="cust-shop" style="padding-top:8px">
       <div id="shopSection">
         <div class="sec-head">
-          <div>
-            <div class="sec-title">Featured Products</div>
-            <div class="sec-sub">Click "Add to Cart" then checkout when ready</div>
-          </div>
-          <div class="search-wrap">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input class="search-input" placeholder="Search products…" oninput="filterProducts(this.value)"/>
-          </div>
+          <div><div class="sec-title">Featured Products</div><div class="sec-sub">Click a product to see details, reviews &amp; add to cart</div></div>
+          <div class="search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input class="search-input" placeholder="Search products…" oninput="filterProducts(this.value)"/></div>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
     </div>
 
-    <!-- My Orders Page -->
+    <!-- WISHLIST -->
+    <div class="cust-page" id="cust-wishlist">
+      <div class="sec-head">
+        <div><div class="sec-title">My Wishlist</div><div class="sec-sub">Products you saved for later</div></div>
+        <button class="btn btn-ghost btn-sm" onclick="loadWishlist()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      </div>
+      <div class="product-grid" id="wishlistGrid"></div>
+    </div>
+
+    <!-- MY ORDERS -->
     <div class="cust-page" id="cust-orders">
       <div class="sec-head">
-        <div>
-          <div class="sec-title">My Orders</div>
-          <div class="sec-sub">Your placed orders</div>
-        </div>
+        <div><div class="sec-title">My Orders</div><div class="sec-sub">Track your placed orders</div></div>
         <button class="btn btn-ghost btn-sm" onclick="loadMyOrders()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
       </div>
       <div id="myOrdersList"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="cust-page" id="cust-profile">
+      <div class="profile-card">
+        <div class="profile-avatar" id="profileAvatar">U</div>
+        <div class="profile-name" id="profileName">User</div>
+        <div class="profile-email" id="profileEmail">user@example.com</div>
+        <div class="profile-stats">
+          <div class="ps-item"><div class="ps-val" id="ps-orders">—</div><div class="ps-lbl">Orders</div></div>
+          <div class="ps-item"><div class="ps-val" id="ps-wishlist">—</div><div class="ps-lbl">Wishlist</div></div>
+          <div class="ps-item"><div class="ps-val" id="ps-reviews">—</div><div class="ps-lbl">Reviews</div></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -169,17 +140,18 @@
       <div class="cart-title"><i class="fa-solid fa-cart-shopping" style="color:var(--primary);margin-right:8px"></i>Your Cart</div>
       <button class="cart-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="cart-items" id="cartItems">
-      <div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i>Your cart is empty</div>
-    </div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i>Your cart is empty</div></div>
     <div class="cart-footer">
-      <div class="cart-total-row">
-        <span class="cart-total-label">Total</span>
-        <span class="cart-total-val" id="cartTotal">$0.00</span>
-      </div>
-      <button class="btn-checkout" id="btnCheckout" onclick="openCheckout()" disabled>
-        <i class="fa-solid fa-lock"></i> Secure Checkout
-      </button>
+      <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-val" id="cartTotal">$0.00</span></div>
+      <button class="btn-checkout" id="btnCheckout" onclick="openCheckout()" disabled><i class="fa-solid fa-lock"></i> Secure Checkout</button>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal modal-lg">
+      <button class="modal-close-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div id="productModalBody"></div>
     </div>
   </div>
 
@@ -191,9 +163,7 @@
       <div class="modal-summary" id="checkoutSummary"></div>
       <div class="modal-actions">
         <button class="btn-modal-cancel" onclick="closeCheckout()">Cancel</button>
-        <button class="btn-modal-confirm" id="btnConfirmOrder" onclick="confirmOrder()">
-          <i class="fa-solid fa-check"></i> Place Order
-        </button>
+        <button class="btn-modal-confirm" id="btnConfirmOrder" onclick="confirmOrder()"><i class="fa-solid fa-check"></i> Place Order</button>
       </div>
     </div>
   </div>
@@ -203,41 +173,29 @@
     <div class="modal success-modal">
       <div class="success-anim">🎉</div>
       <div class="success-title">Order Placed Successfully!</div>
-      <div class="success-sub" id="successMsg">Your order has been received and is being processed.</div>
-      <button class="btn btn-primary" style="width:100%" onclick="closeSuccess()">
-        <i class="fa-solid fa-receipt"></i> View My Orders
-      </button>
+      <div class="success-sub" id="successMsg">Your order has been received.</div>
+      <button class="btn btn-primary" style="width:100%" onclick="closeSuccess()"><i class="fa-solid fa-receipt"></i> View My Orders</button>
     </div>
   </div>
 
 </div><!-- /customerShell -->
 
-<!-- ════════════════════════════════════════════
-     ADMIN SHELL
-════════════════════════════════════════════ -->
+<!-- ADMIN SHELL -->
 <div id="adminShell" style="display:none">
   <div class="admin-layout">
-
-    <!-- Sidebar -->
     <aside class="admin-sidebar">
       <div class="as-logo">
         <div class="as-logo-wrap">
           <div class="as-logo-icon"><i class="fa-solid fa-store"></i></div>
-          <div>
-            <div class="as-logo-text">ShopEase</div>
-            <div class="as-logo-sub">Admin Panel</div>
-          </div>
+          <div><div class="as-logo-text">ShopEase</div><div class="as-logo-sub">Admin Panel</div></div>
         </div>
       </div>
-
       <div class="as-section">Overview</div>
       <div class="as-nav-item active" onclick="adminNav('dashboard',this)"><span class="ni"><i class="fa-solid fa-gauge-high"></i></span>Dashboard</div>
-
       <div class="as-section">Manage</div>
       <div class="as-nav-item" onclick="adminNav('products',this)"><span class="ni"><i class="fa-solid fa-box"></i></span>Products<span class="as-badge" id="anb-products">—</span></div>
       <div class="as-nav-item" onclick="adminNav('users',this)"><span class="ni"><i class="fa-solid fa-users"></i></span>Customers<span class="as-badge" id="anb-users">—</span></div>
       <div class="as-nav-item" onclick="adminNav('orders',this)"><span class="ni"><i class="fa-solid fa-receipt"></i></span>Orders<span class="as-badge" id="anb-orders">—</span></div>
-
       <div class="as-footer">
         <div class="as-user-card">
           <div class="as-avatar">A</div>
@@ -247,16 +205,10 @@
       </div>
     </aside>
 
-    <!-- Main -->
     <div class="admin-main">
       <header class="admin-topbar">
-        <div>
-          <div class="atp-title" id="atp-title">Dashboard</div>
-          <div class="atp-bread" id="atp-bread">Home / Dashboard</div>
-        </div>
-        <div class="atp-right">
-          <button class="atp-btn" onclick="adminRefreshAll()" title="Refresh"><i class="fa-solid fa-rotate-right"></i></button>
-        </div>
+        <div><div class="atp-title" id="atp-title">Dashboard</div><div class="atp-bread" id="atp-bread">Home / Dashboard</div></div>
+        <div class="atp-right"><button class="atp-btn" onclick="adminRefreshAll()" title="Refresh"><i class="fa-solid fa-rotate-right"></i></button></div>
       </header>
 
       <div class="admin-content">
@@ -272,11 +224,11 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div class="card">
               <div class="card-hdr"><div class="card-hdr-title"><i class="fa-solid fa-box"></i> Recent Products</div><button class="btn btn-ghost btn-sm" onclick="adminNav('products',document.querySelectorAll('.as-nav-item')[2])">View All</button></div>
-              <div class="tbl-wrap"><table><thead><tr><th>Name</th><th>Price</th></tr></thead><tbody id="adm-dash-products"></tbody></table></div>
+              <div class="tbl-wrap"><table><thead><tr><th>Name</th><th>Price</th><th>Stock</th></tr></thead><tbody id="adm-dash-products"></tbody></table></div>
             </div>
             <div class="card">
               <div class="card-hdr"><div class="card-hdr-title"><i class="fa-solid fa-receipt"></i> Recent Orders</div><button class="btn btn-ghost btn-sm" onclick="adminNav('orders',document.querySelectorAll('.as-nav-item')[4])">View All</button></div>
-              <div class="tbl-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Product</th></tr></thead><tbody id="adm-dash-orders"></tbody></table></div>
+              <div class="tbl-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Status</th></tr></thead><tbody id="adm-dash-orders"></tbody></table></div>
             </div>
           </div>
         </div>
@@ -321,7 +273,7 @@
                 <button class="btn btn-ghost btn-sm" onclick="adminLoadUsers()"><i class="fa-solid fa-rotate-right"></i></button>
               </div>
             </div>
-            <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Customer</th><th>Email</th><th>ID</th></tr></thead><tbody id="adm-users-tbl"></tbody></table></div>
+            <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Customer</th><th>Email</th><th>Role</th><th>ID</th></tr></thead><tbody id="adm-users-tbl"></tbody></table></div>
           </div>
         </div>
 
@@ -335,7 +287,7 @@
                 <button class="btn btn-ghost btn-sm" onclick="adminLoadOrders()"><i class="fa-solid fa-rotate-right"></i></button>
               </div>
             </div>
-            <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Order ID</th><th>Customer ID</th><th>Product ID</th><th>Status</th></tr></thead><tbody id="adm-orders-tbl"></tbody></table></div>
+            <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Order ID</th><th>Customer ID</th><th>Product ID</th><th>Status</th><th>Update</th></tr></thead><tbody id="adm-orders-tbl"></tbody></table></div>
           </div>
         </div>
 
